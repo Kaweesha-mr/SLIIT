@@ -82,7 +82,7 @@ int main(void){
 	}
 	
 	//calculating the discounts and final total
-	Discount = (float)(D/100.0)*total;1
+	Discount = (float)(D/100.0)*total;
 	finaltot = total - Discount;
 	
 	//printing the outputs	
