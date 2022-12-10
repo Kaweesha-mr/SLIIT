@@ -1,73 +1,55 @@
 #include<stdio.h>
-
-//user defined variable
 struct emp{
-	int emp_no;
+	
+	int id;
 	char name[20];
-	int attend[7];	
+	int attend[7];
+	
 };
-
-
 int main(void){
 	
-	//variable decleare
-	int i,j,k,l,m,reading[7];
+	int i,j,k,l;
 	struct emp emp[2];
 	
-	//file pointer decleare
+	for(i=0;i<2;i++){
+		printf("Enter Id of Employee %d :",i+1);
+		scanf("%d",&emp[i].id);
+		
+		printf("Enter Employee Name : ");
+		scanf(" %s",emp[i].name);
+		
+		for(j=0;j<7;j++){
+			
+			printf("Enter Attendance of Day %d :",j+1);
+			scanf("%d",&emp[i].attend[j]);
+		}
+		puts("");
+	}
+	
 	FILE *ptr;
 	
-	//file open
-	ptr = fopen("attendance.dat","w");
+	ptr = fopen("attendace.dat","w");
 	
-	//checking the file status
 	if(ptr == NULL){
 		
-		printf("FILE STATUS : not opened");
-		
+		printf("File : Status Not Opened");
 		return -1;
 	}
 	else{
-		
-		//taking user inputs
-		for(i=0;i<2;i++){
-		
-		printf("Enter employee Number %d: ",i+1);
-		scanf("%d",&emp[i].emp_no);
-		
-		printf("Enter Employee Name :");
-		scanf("%s",emp[i].name);
-		
-		//taking attendance of the user
-		for(j=0;j<7;j++){
+		for(k=0;k<2;k++){
 			
-			printf("Enter attendance for day %d (presenet=1, abcent =0): ",j+1);
-			scanf("%d",&emp[i].attend[j]);
-	}
-}
+			fprintf(ptr,"%d\t",emp[k].id);
+			fprintf(ptr,"%s\t",emp[k].name);
+			for(l=0;l<7;l++){
+				fprintf(ptr,"%d",emp[k].attend[l]);
+			}
+			fprintf(ptr,"\n");
 			
-			
-	
-	//printing the outputs in the file 	
-	for(k=0;k<2;k++){
-		fprintf(ptr,"%d  ",emp[k].emp_no);
-		fprintf(ptr,"%s  ",emp[k].name);
-		
-		for(i=0;i<7;i++){
-			
-			fprintf(ptr,"%d ",emp[k].attend[i]);
 		}
-		fprintf(ptr,"\n");
 		
-	}	
 
-	
-	//closing the file
+	}
 	fclose(ptr);
 	
-	}
-
 	return 0;
 }
-
-	
