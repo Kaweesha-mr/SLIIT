@@ -1,54 +1,51 @@
 #include<stdio.h>
 
 int main(void){
-
-	//variable declearing
-	char bulbs[4][4];
-	int i,j,k,l;
-	char  test;
+	
+	//DECLEARING THE VARIABLES
+	char bulb[4][4];
+	int i,j;
 	
 	
-	
-	//getting the colours of the array by user inputs
-	for(i =0;i<4;i++){
-		
-		printf("Line %d\n",i+1);
+	//GETTING USER INPUTS FOR BULBS COLOURS
+	for(i=0;i<4;i++){
 		
 		for(j=0;j<4;j++){
-			printf("Enter the colour for [%d][%d] : ",i,j);
-			scanf(" %c%*c",&test);
 			
-			if(test == 'R' || test == 'G' || test == 'B'){
-				bulbs[i][j] = test;
-			}			
+			printf("Enter Bulb Colour of [%d,%d]: ",i,j);
+			scanf(" %c",&bulb[i][j]);
 		}
 	}
 	
-	printf("\n");
-	
-	//printing the array
-	for(k=0;k<4;k++){
+	//PRINTING THE LIGHT ARRAY
+	for(i=0;i<4;i++){
 		
-		for(l=0;l<4;l++){			
-			printf("%c " ,bulbs[k][l]);
-		}
-
-		printf("\n");
-	}
-	
-	//printing the locations of red colour bulbs
-		
-	printf("RED LED bulbs position\n");	
-	for(k=0;k<4;k++){
-		for(l=0;l<4;l++){	
-	
-			if(bulbs[k][l] == 'R'){
-				printf("[%d,%d] ",k,l);
-			}	
+		for(j=0;j<4;j++){
 			
+			printf(" %c ",bulb[i][j]);
 		}
-
+		puts("");
 	}
+	
+	
+	//PRINTING THE RED BULB POSITIONS
+	printf("Red Bulbs Positions \n");
+	
+	
+	for(i=0;i<4;i++){
+		
+		for(j=0;j<4;j++){
+			
+			if(bulb[i][j] == 'R'){
+				
+				printf("[%d,%d]",i,j);
+			}
+		}
+	}
+	
+	
+	
+	
 	
 	
 	return 0;
