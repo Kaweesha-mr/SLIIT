@@ -2,7 +2,7 @@
 
 int main(void){
 	
-	int id,count,i,j;
+	int id,count,i,j,temp;
 	char name[20],attendance[7];
 	
 	
@@ -17,20 +17,27 @@ int main(void){
 	}
 	else {
 		
+		printf("Enter ID : ");
+		scanf("%d",&temp);
+		
 		for(j=0;j<2;j++){
 			
 			fscanf(ptr,"%d",&id);
 			fscanf(ptr,"%s",name);
 			fscanf(ptr,"%s",attendance);
 			
-			for(i=0;i<7;i++){
+			if(id == temp){
+				
+				for(i=0;i<7;i++){
 				if(attendance[i] == '1'){
 					count++;
 				}
 			}
-			
 			printf("%s\tNo of days attend : %d\n",name,count);
 			count=0;
+
+				
+			}
 		}
 		
 	}
