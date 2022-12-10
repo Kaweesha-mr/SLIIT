@@ -2,59 +2,39 @@
 
 int main(void){
 	
-	int emp_no,i,temp,k,attend[1],Attend=0;
-	char name[20];
+	int id,count,i,j;
+	char name[20],attendance[7];
 	
-	//file open
+	
 	FILE *ptr;
-	ptr = fopen("attendance.dat","r");
 	
-	//checking the file status
+	ptr  = fopen("attendace.dat","r");
+	
 	if(ptr == NULL){
 		
-		printf("FILE STATUS : not opened");
-		
+		printf("File Status : Not opened");
 		return -1;
 	}
-	else{
+	else {
 		
-		printf("Enter employee number : ");
-		scanf("%d",&temp);
-		//looping till the end of the file
-		while(!feof(ptr)){
+		for(j=0;j<2;j++){
 			
-			fscanf(ptr,"%d",&emp_no);
+			fscanf(ptr,"%d",&id);
 			fscanf(ptr,"%s",name);
+			fscanf(ptr,"%s",attendance);
 			
-			//reading the attendance
 			for(i=0;i<7;i++){
-				
-				fscanf(ptr,"%d",attend);
-				//counting the each attendance
-				if(attend[0] == 1){
-					Attend++;
+				if(attendance[i] == '1'){
+					count++;
 				}
 			}
 			
-			//printing the number of days attend for user requested employee number
-			if(emp_no == temp){
-				
-				printf("No of Days attend : %d",Attend);
-				break;
-			}
-			
-			Attend =0;
-				
-		}	
-
-		
+			printf("%s\tNo of days attend : %d\n",name,count);
+			count=0;
+		}
 		
 	}
-	//closing the file
 	fclose(ptr);
-	
-	
-	
 	
 	return 0;
 }
