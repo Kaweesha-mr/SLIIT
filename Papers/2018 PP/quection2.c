@@ -1,149 +1,107 @@
 #include<stdio.h>
 
 
-//user define structure to assign various values
-struct people{
-	int account;
-	char name[15];
+//declearing the structure
+struct details{
+	
+	int acc_num;
+	char name[20];
 	char type;
 	float amount;
 };
 
-//declearing functions
-float minwidth(float w[],int n);
-float maxdep(float d[],int x);
-
 
 int main(void){
 	
-	//variable declearing
-	int i,index=0,index2;
-	struct people people[5];
-	float withdraw[5] ={0},deposit[5] ={0},total_dep,total_width,max_dep,min_with;
+	//declearing variables
+	struct details details[5];
+	float D_amount,W_amount,min,max;
+	int i,j,k;
 	
 	
-	
-	//entering user data to system
-	for(i=0;i<5;i++){
+	//getting user inputs 
+	for(i =0; i<5;i++){
 		
-		printf("\nEnter Account Number : ");
-		scanf("%d",&people[i].account);
-				
-		printf("\nEnter Name : ");
-		scanf(" %s",people[i].name);
+		printf("Enter Account Number of Customer %d :",i+1);
+		scanf("%d",&details[i].acc_num);
 		
-		printf("\nEnter type : ");
-		scanf(" %c%*c",&people[i].type);
+		printf("Enter Name of Customer %d : ",i+1);
+		scanf("%s",&details[i].name);
 		
-		printf("\nEnter Amount : ");
-		scanf("%f",&people[i].amount);
+		printf("Enter Transaction Type : ");
+		scanf(" %c",&details[i].type);
 		
-	
-		//checking the conditions and calculating the total of each deposit and withdraw		
-		if(people[i].type == 'W'|| people[i].type == 'w'){
-			withdraw[index] = people[i].amount;
-			index++;			
-			total_width = total_width + people[i].amount;
+		printf("Enter Amount : ");
+		scanf("%f",&details[i].amount);
+		
+		
+		if(details[i].type =='W' || details[i].type =='w' ){
+			W_amount = W_amount + details[i].amount;
 		}
-		else if(people[i].type == 'D' || people[i].type == 'd'){
+		else if (details[i].type =='D' || details[i].type =='d'){
+			D_amount = D_amount + details[i].amount;
+		}
+		else{
+			printf("Please Enter Valid Transaction Type: \n");
+			return -1;
 			
-			deposit[index2] = people[i].amount;
-			index2++;
-			total_dep = total_dep + people[i].amount;
 		}
-				
+		
 	}
-
-	
-	//1.print the withdrawal and deposit count
-	printf("Total withdrawl Amount : %.2f\n",total_width);
-	printf("Total deposit Amount : %.2f\n",total_dep);
 	
 	
-
-	int l;	
+	printf("Total Deposite Amount : %.2f\n",D_amount);
+	printf("Total Withdrawal Amount : %.2f\n",W_amount);
 	
-	//calling the functions and getting the returning values
-	max_dep = maxdep(deposit,5);
-	min_with = minwidth(withdraw,5);
 	
-	//displaying the output
-	for(l =0;l<5;l++){
-		if(max_dep == people[l].amount){
+	//calculating the maximum diposite and printing the name
+	max = details[0].amount;
+	
+	for(j=0;j<5;j++){	
+	if (details[j].type == 'D' || details[j].type == 'd'){
+			if(max<details[j].amount){
+				max = details[j].amount;
+		}
+	}
 			
-			printf("Name of the maximum Deposit : %s\n",people[l].name);
-			break;
+	}
+	
+	for(k=0;k<5;k++){
+		
+		if(max == details[k].amount){
+			
+			printf("Maximum Deposite Customer Name : %s\n",details[k].name);
 		}
 	}
 	
 	
 	
-	int m;	
-	//displaying the output
-	for(m =0;m<5;m++){
-		if(min_with == people[m].amount){
-			printf("Name of the minimum withdraw : %s\n",people[m].name);
-			break;
+	//calculating the miimum of withdrawal amount and printing the name
+	min = details[0].amount;
+	
+	for(j=0;j<5;j++){
+		
+	if (details[j].type == 'W' || details[j].type == 'w'){
+			
+			if(min > details[j].amount){
+				min = details[j].amount;
 		}
 	}
+			
+	}
+	
+	for(k=0;k<5;k++){
+		
+		if(min == details[k].amount){
+			
+			printf("Minimum withdraw Customer Name : %s\n",details[k].name);
+		}
+	}
+	
+
 	
 	
 	
 	return 0;
-
 }
-
-
-
-
-
-
-
-//functions declearing
-float minwidth(float w[],int n){
-	
-	int k;	
-	float min_width;
-	
-	for(k=0;k<n;k++){
-		
-		if(w[k] == 0){
-			
-			continue;
-		}
-		int min =w[0];
-		if( min > w[k]){
-			min_width = w[k];
-			
-		}
-		
-	}
-	
-	//printf("Min width %f",min_width);
-	
-	return min_width;
-}
-
-float maxdep(float d[],int x){
-	
-	
-	int k;	
-	float max_dep;
-	for(k=0;k<x;k++){
-		
-		
-		if(max_dep < d[k]){
-			max_dep = d[k];
-			
-		}
-	}
-	
-	return max_dep;
-	
-	
-	
-}
-
-	
-	
 
