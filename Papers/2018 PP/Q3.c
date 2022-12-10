@@ -36,7 +36,7 @@ int main(void){
 		//calculating the final total
 		F_total = total - discount;
 		
-		printf("Total Amount(After Discount) : %.2f",F_total);
+		printf("Total Amount(After Discount) : %.2f\n",F_total);
 		
 		//function to check and print the gift customer got
 		displayGift(F_total);
@@ -98,7 +98,7 @@ void displayGift(float total){
 		
 		printf("Free Gift :Packet of Milk\n");
 	}
-	else if(total>500 && total<6999){
+	else if(total>5000 && total<6999){
 		
 		printf("Free Gift :1kg of Sugar\n");
 	}
