@@ -46,11 +46,14 @@ int main(void){
     }
     printf("File Status : opend\n");
 
-    
+
+
+	fscanf(ptr,"%s %c%*c",name,&appointment);//used to stop the extra round which curser goes through the line
+	
     //counting the appointment type
     while(!feof(ptr)){
 
-        fscanf(ptr,"%s %c",name,&appointment);
+        fscanf(ptr,"%s %c%*c",name,&appointment);
         switch(appointment){
 
             case 'C':{
