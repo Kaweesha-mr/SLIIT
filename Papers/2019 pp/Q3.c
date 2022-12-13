@@ -15,6 +15,9 @@ int main(void){
 	int i;
 	float amount,interest,total;
 	
+	//calling the debugging function
+	testTotalAmount();
+	
 	//getting user inputs
 	printf("Enter Amount : ");
 	scanf("%f",&amount);
@@ -42,7 +45,7 @@ int main(void){
 
 //functions used to calculate the annual interest
 float calcAnnualInterest(float interestRate, float amount){
-	if(amount<1,000,000.00){
+	if(amount>1000000.00){
 		
 		interestRate+=0.5;
 	}
@@ -59,6 +62,7 @@ float findTotalAmount(float interestRate, float amount){
 
 //assert functions
 void testTotalAmount(){
-	
+	assert(findTotalAmount(10,1000000) == 1100000);
+	assert(findTotalAmount(10,2000000) == 2210000);
 	
 }
